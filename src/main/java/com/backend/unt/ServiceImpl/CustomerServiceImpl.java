@@ -18,4 +18,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerEntity> getCustomers(){
         return customerRepository.findAll();
     }
+
+    @Override
+    public List<CustomerEntity> getCustomersByCity(String city) {
+        return customerRepository.findByCity(city);
+    }
 }

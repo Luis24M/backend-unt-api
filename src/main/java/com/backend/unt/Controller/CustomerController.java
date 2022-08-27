@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -14,8 +13,13 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping
+    @GetMapping("")
     public List<CustomerEntity> getCustomer(){
         return customerService.getCustomers();
+    }
+
+    @GetMapping("/{city}")
+    public List<CustomerEntity> getCustomersByCity(@PathVariable("city") String city) {
+        return customerService.getCustomersByCity(city);
     }
 }

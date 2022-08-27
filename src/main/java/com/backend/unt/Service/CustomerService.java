@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CustomerService {
     List<CustomerEntity> getCustomers();
+    List<CustomerEntity> getCustomersByCity(String city);
 }
