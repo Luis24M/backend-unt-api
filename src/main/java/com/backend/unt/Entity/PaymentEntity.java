@@ -16,8 +16,7 @@ public class PaymentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "paymentId")
-    @JsonIgnore
-    private Integer paymentId;
+    private int paymentId;
 
     @Column(name = "amount")
     private Float amount;
