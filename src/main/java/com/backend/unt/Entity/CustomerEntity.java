@@ -55,15 +55,18 @@ public class CustomerEntity {
 
     @ManyToOne
     @JoinColumn(name = "salesRepEmployeeNumber")
+    @JsonIgnore
     private EmployeeEntity salesRepEmployee;
 
     @Column(name = "creditLimit")
     private Float creditLimit;
 
     @OneToMany(mappedBy="customer")
+    @JsonIgnore
     private List<PaymentEntity> payments;
 
     @Column(name="employeeNumber")
+    @JsonIgnore
     private Integer employee;
 
 }
