@@ -53,8 +53,9 @@ public class CustomerEntity {
     @Column(name = "country")
     private String country;
 
-    @Column(name = "salesRepEmployeeNumber")
-    private Integer salesRepEmployeeNumber;
+    @ManyToOne
+    @JoinColumn(name = "salesRepEmployeeNumber")
+    private EmployeeEntity salesRepEmployee;
 
     @Column(name = "creditLimit")
     private Float creditLimit;
@@ -62,9 +63,7 @@ public class CustomerEntity {
     @OneToMany(mappedBy="customer")
     private List<PaymentEntity> payments;
 
-    @ManyToOne
-    @JoinColumn(name="employeeNumber")
-    @JsonIgnore
-    private EmployeeEntity employee;
+    @Column(name="employeeNumber")
+    private Integer employee;
 
 }

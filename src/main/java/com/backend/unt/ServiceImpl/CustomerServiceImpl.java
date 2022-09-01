@@ -15,12 +15,27 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
 
     @Override
-    public List<CustomerEntity> getCustomers(){
+    public List<CustomerEntity> listCustomers(){
         return customerRepository.findAll();
     }
 
     @Override
-    public List<CustomerEntity> getCustomersByCity(String city) {
-        return customerRepository.findByCity(city);
+    public CustomerEntity createCustomer(CustomerEntity customer) {
+        return customerRepository.save(customer);
+    }
+
+    @Override
+    public CustomerEntity updateCustomer(CustomerEntity customer, int customerNumber) {
+        CustomerEntity customerDB = customerRepository.findByCustomerNumber(customerNumber);
+
+        customerDB.setCity(customer.getCity() == null ? customerDB.getCity() : customer.getCity());
+        customerDB.setCustomerName(customer.getCustomerName() == null ? customerDB.getCustomerName() : customer.getCustomerName());
+
+        return customerRepository.save(customerDB);
+    }
+
+    @Override
+    public void deleteCustomerByCustomerNumber(int customerNumber) {
+        customerRepository.deleteByCustomerNumber(customerNumber);
     }
 }

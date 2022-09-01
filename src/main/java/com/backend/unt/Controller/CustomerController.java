@@ -15,12 +15,22 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("")
-    public List<CustomerEntity> getCustomer(){
-        return customerService.getCustomers();
+    public List<CustomerEntity> listCustomers(){
+        return customerService.listCustomers();
     }
 
-    @GetMapping("/{city}")
-    public List<CustomerEntity> getCustomersByCity(@PathVariable("city") String city) {
-        return customerService.getCustomersByCity(city);
+    @PostMapping("")
+    public CustomerEntity createCustomer(@RequestBody CustomerEntity customer) {
+        return customerService.createCustomer(customer);
+    }
+
+    @PutMapping("/{id}")
+    CustomerEntity updateCustomer(@RequestBody CustomerEntity customer, @PathVariable("id") int customerNumber) {
+        return customerService.updateCustomer(customer, customerNumber);
+    }
+
+    @DeleteMapping("/{id}")
+    void deleteCustomerByCustomerNumber(@PathVariable("id") int customerNumber) {
+        customerService.deleteCustomerByCustomerNumber(customerNumber);
     }
 }

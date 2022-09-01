@@ -43,6 +43,7 @@ public class EmployeeEntity {
     private String jobTitle;
 
     @OneToMany(mappedBy="employee")
+    @JsonIgnore
     private List<CustomerEntity> customers;
 
     @ManyToOne
